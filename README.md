@@ -15,6 +15,7 @@ The GenForce model contains two modules:
 
 # Getting Started
 ## Environment
+We test our code on NVIDIA A100, 80GB memory.
 - Install required denpendencied using our conda env file
 ```
 conda env create -f environment.yaml
