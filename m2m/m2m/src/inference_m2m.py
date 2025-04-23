@@ -272,7 +272,7 @@ if __name__ == "__main__":
     parser.add_argument('--img_root', type=str, default="dataset/homo")
     parser.add_argument('--infer_sim', action='store_true')
     parser.add_argument('--infer_real', action='store_true')
-    parser.add_argument('--sensor_types', type=str, nargs="+", default=['GelSight1', "GelTip2", "TacTip2", "GelSight2", "GelTip3"])
+    parser.add_argument('--sensor_types', type=str, nargs="+", default=['Array-I'])
     parser.add_argument('--model_path', type=str, default='checkpoints/model_11501.pkl')
     parser.add_argument('--output_dir', type=str, default='checkpoints/homo')
     parser.add_argument('--dataloader_num_workers', type=int, default=8)

@@ -1,16 +1,10 @@
-#!/bin/bash -l
-#SBATCH --output=/scratch_tmp/users/k23058530/project/genforce/hpc_temp/%j.out
-#SBATCH --job-name=ratio14
-#SBATCH --gres=gpu
-#SBATCH --cpus-per-task=24
 
-module load cuda
 
-python /scratch_tmp/users/k23058530/project/genforce/src/force_material/train_force.py --config /scratch_tmp/users/k23058530/project/genforce/scripts/force/modulus/correction_training/ratio14/6_14.yaml
-python /scratch_tmp/users/k23058530/project/genforce/src/force_material/train_force.py --config /scratch_tmp/users/k23058530/project/genforce/scripts/force/modulus/correction_training/ratio14/8_14.yaml
-python /scratch_tmp/users/k23058530/project/genforce/src/force_material/train_force.py --config /scratch_tmp/users/k23058530/project/genforce/scripts/force/modulus/correction_training/ratio14/10_14.yaml
-python /scratch_tmp/users/k23058530/project/genforce/src/force_material/train_force.py --config /scratch_tmp/users/k23058530/project/genforce/scripts/force/modulus/correction_training/ratio14/12_14.yaml
-python /scratch_tmp/users/k23058530/project/genforce/src/force_material/train_force.py --config /scratch_tmp/users/k23058530/project/genforce/scripts/force/modulus/correction_training/ratio14/16_14.yaml
-python /scratch_tmp/users/k23058530/project/genforce/src/force_material/train_force.py --config /scratch_tmp/users/k23058530/project/genforce/scripts/force/modulus/correction_training/ratio14/18_14.yaml
+python force/com/com_modulus/train_force.py --config force/scripts/modulus/train/com/ratio14/6_14.yaml
+python force/com/com_modulus/train_force.py --config force/scripts/modulus/train/com/ratio14/8_14.yaml
+python force/com/com_modulus/train_force.py --config force/scripts/modulus/train/com/ratio14/10_14.yaml
+python force/com/com_modulus/train_force.py --config force/scripts/modulus/train/com/ratio14/12_14.yaml
+python force/com/com_modulus/train_force.py --config force/scripts/modulus/train/com/ratio14/16_14.yaml
+python force/com/com_modulus/train_force.py --config force/scripts/modulus/train/com/ratio14/18_14.yaml
 
 

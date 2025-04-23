@@ -139,9 +139,9 @@ class PairedDatasetSim(Dataset):
         
         # Initialize dataset properties
         self.surface_types = self._get_surface_types()
-        self.sensor_types = ['GelSight1', 'GelSight2', 'GelSight3', 'GelSight4',\
-                              "GelTip1", "GelTip2", "GelTip3", "GelTip4",\
-                              "TacTip1", "TacTip2", "TacTip3", "TacTip4"]
+        self.sensor_types = ['Array1', 'Array2', 'Array3', 'Array4',\
+                              "Circle1", "Circle2", "Circle3", "Circle4",\
+                              "Diamond1", "Diamond2", "Diamond3", "Diamond4"]
         self.ref_images = self._get_reference_images()
         
         # Get all paired data

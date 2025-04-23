@@ -8,8 +8,8 @@ tar_force: dataset/homo/modulus/force/ratio_10
 
 min_max: force/config/min_max.json
 
-checkpoint: /scratch_tmp/users/k23058530/project/genforce/output/force/modulus/incomplete/ratio10/ratio_8_ratio_10/20250118_184848/epoch_40.pth
-save_dir: /scratch_tmp/users/k23058530/project/genforce/output/force/modulus/{}
+checkpoint: infer/force_com/modulus/incomplete/ratio10/ratio_8_ratio_10/20250118_184848/epoch_40.pth
+save_dir: infer/force_com/modulus/{}
 
 #Train
 # train: True

@@ -21,13 +21,13 @@ def get_parser():
     )  
     # Config file  
     parser.add_argument("--config", is_config_file=True, default="/scratch_tmp/users/k23058530/project/genforce/src/force/config/marker.yaml")  
-    parser.add_argument('--task', type=str, default='GelSight1_GelTip2') 
+    parser.add_argument('--task', type=str, default='Array1_Circle2') 
     parser.add_argument('--unseen', type=str, nargs="+", default=[]) 
     parser.add_argument('--test_unseen', type=str2bool, default='False') 
 
     # Data loader  
-    parser.add_argument('--sf_filter', type=str, default="/scratch_tmp/users/k23058530/project/genforce/src/force/config/TacTip2_Normal>1.csv")  
-    parser.add_argument('--tf_filter', type=str, default="/scratch_tmp/users/k23058530/project/genforce/src/force/config/TacTip2_Normal>1.csv")  
+    parser.add_argument('--sf_filter', type=str, default="/scratch_tmp/users/k23058530/project/genforce/src/force/config/Diamond2_Normal>1.csv")  
+    parser.add_argument('--tf_filter', type=str, default="/scratch_tmp/users/k23058530/project/genforce/src/force/config/Diamond2_Normal>1.csv")  
     parser.add_argument('--src_img', type=str, default="dataset/1")  
     parser.add_argument('--src_force', type=str, default="dataset/1")  
     parser.add_argument('--tar_img', type=str, default="dataset/1")  
@@ -40,7 +40,7 @@ def get_parser():
     parser.add_argument('--train', type=str2bool, default='True')  
     parser.add_argument("--seed", type=int, default=0)  
     parser.add_argument('--num_workers', type=int, default=1)  
-    parser.add_argument('--checkpoint', type=str, default='/scratch_tmp/users/k23058530/project/genforce/output/force/GelSight1_GelTip2/model.pth')  
+    parser.add_argument('--checkpoint', type=str, default='/scratch_tmp/users/k23058530/project/genforce/output/force/Array1_Circle2/model.pth')  
     parser.add_argument('--batch_size', type=int, default=8)  
     parser.add_argument('--n_epoch', type=int, default=20)  
     parser.add_argument('--out_dim', type=int, default=3)  

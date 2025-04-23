@@ -267,10 +267,10 @@ def create_dataloader_test(img_dir, force_dir, global_min_max, shuffle=True):
 # Example Usage  
 if __name__ == "__main__":  
     # Directory paths  
-    force_dir = "dataset/homo/force/GelSight1_new_merged"  
-    # img_dir = "/scratch_tmp/users/k23058530/dataset/genforce/real/gelsight/GelTip2/image"  
+    force_dir = "dataset/homo/force/Array1_new_merged"  
+    # img_dir = "/scratch_tmp/users/k23058530/dataset/genforce/real/gelsight/Circle2/image"  
 
-    great_one_dir = "project/genforce/src/force/config/GelSight1_new_Normal>1.csv"
+    great_one_dir = "project/genforce/src/force/config/Array1_new_Normal>1.csv"
 
     # Parameters  
     batch_size = 4  
@@ -283,10 +283,10 @@ if __name__ == "__main__":
 
 
     # Save it to a file  
-    with open("/scratch_tmp/users/k23058530/project/genforce/src/force/config/GelSight1_new_min_max.json", "w") as file:  
+    with open("/scratch_tmp/users/k23058530/project/genforce/src/force/config/Array1_new_min_max.json", "w") as file:  
         json.dump(min_max_dict, file, indent=4)  # Save with pretty formatting (indent=4)
      
-    # with open("/scratch_tmp/users/k23058530/project/genforce/src/force/config/GelTip2_min_max.json", "r") as file:  
+    # with open("/scratch_tmp/users/k23058530/project/genforce/src/force/config/Circle2_min_max.json", "r") as file:  
     #     min_max_dict = json.load(file)  # Save with pretty formatting (indent=4)
 
     # # Create the dataloader  

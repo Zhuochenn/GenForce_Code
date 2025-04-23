@@ -313,7 +313,7 @@ def main():
     trainer = MarkerEncoder(**config)  
     
     trainer.train(  
-        data_dir="/scratch/grp/luo/zhuo/genforce/dataset/sim/12types",  
+        data_dir="dataset/sim",  
         num_epochs=100,  
         save_steps=1000,  
         log_steps=100  

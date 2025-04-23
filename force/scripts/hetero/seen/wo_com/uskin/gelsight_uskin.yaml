@@ -1,15 +1,15 @@
 task: gelsight_uskin
 
-src_img: dataset/homo/infer/hetero/gelsight_uskin/location/18types/final/gelsight_uskin/02_25_12_56
-src_force: /scratch_tmp/grp/luo/zhuo/genforce/dataset/genforce/heterogeneous/location_pair/uskin_gelsight/force/18indenters/gelsight
+src_img: infer/heteroo/gelsight_uskin/02_25_12_56
+src_force: dataset/hetero/force/gelsight
 
-tar_img: /scratch_tmp/grp/luo/zhuo/genforce/dataset/genforce/heterogeneous/location_pair/uskin_gelsight/img/18indenters/uskin
-tar_force: /scratch_tmp/grp/luo/zhuo/genforce/dataset/genforce/heterogeneous/location_pair/uskin_gelsight/force/18indenters/uskin
+tar_img: dataset/hetero/img/uskin
+tar_force: dataset/hetero/force/uskin
 
 min_max: force/config/min_max.json
 
-checkpoint: /scratch_tmp/users/k23058530/project/genforce/output/force/hetero/3types/seen/m2m/gelsight_uskin/20250215_123632/epoch_40.pth
-save_dir: /scratch_tmp/users/k23058530/project/genforce/output/force/hetero/3types/final/{}
+checkpoint: infer/force/hetero/gelsight_uskin/20250215_123632/epoch_40.pth
+save_dir: infer/force/hetero/{}
 
 unseen: ["sphere_s", "triangle", "pacman", "cone", "wave", "torus","dots"]
 test_unseen: False

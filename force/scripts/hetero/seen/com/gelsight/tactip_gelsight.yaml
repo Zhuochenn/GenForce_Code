@@ -1,18 +1,18 @@
 task: tactip_gelsight
 
-src_img: dataset/homo/infer/hetero/gelsight_uskin/location/18types/final/tactip_gelsight/02_26_03_25
-src_force: /scratch_tmp/grp/luo/zhuo/genforce/dataset/genforce/heterogeneous/location_pair/uskin_gelsight/force/18indenters/tactip
+src_img: infer/hetero/tactip_gelsight/02_26_03_25
+src_force: dataset/hetero/force/tactip
 
-tar_img: /scratch_tmp/grp/luo/zhuo/genforce/dataset/genforce/heterogeneous/location_pair/uskin_gelsight/img/18indenters/gelsight
-tar_force: /scratch_tmp/grp/luo/zhuo/genforce/dataset/genforce/heterogeneous/location_pair/uskin_gelsight/force/18indenters/gelsight
+tar_img: dataset/hetero/img/gelsight
+tar_force: dataset/hetero/force/gelsight
 
 min_max: force/config/min_max.json
 
-checkpoint: /scratch_tmp/users/k23058530/project/genforce/output/force/hetero/3types/paper/tactip_gelsight/20250304_155035/epoch_20.pth
-save_dir: /scratch_tmp/users/k23058530/project/genforce/output/force/hetero/3types/paper_0_0.5/{}
+checkpoint: infer/force_com/hetero/tactip_gelsight/20250304_155035/epoch_20.pth
+save_dir: infer/force_com/hetero/{}
 
-src_depth: /scratch_tmp/grp/luo/zhuo/genforce/dataset/genforce/heterogeneous/location_pair/uskin_gelsight/depth/tactip
-modulus: /scratch_tmp/grp/luo/zhuo/genforce/dataset/genforce/heterogeneous/location_pair/uskin_gelsight/modulus
+src_depth: dataset/hetero/depth/tactip
+modulus: dataset/material_compensatin/hetero/cofficient
 
 unseen: ["sphere_s", "triangle", "pacman", "cone", "wave", "torus","dots"]
 test_unseen: False
