@@ -1,0 +1,18 @@
+font.size : 9
+#font.family : fantasy
+figure.figsize: 6,3
+font.weight: normal
+xtick.major.size: 2
+ytick.major.size : 2
+
+lines.markersize: 2
+
+
+# axes
+axes.titlesize: 8
+axes.labelsize: 8
+axes.linewidth : 0.5
+# axes.labelstyle: light
+
+# legend
+# legend.edgecolor : 1
