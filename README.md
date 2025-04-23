@@ -89,6 +89,8 @@ For example, to train all heterogeneous sensors with compensation, starting dept
 ```
 sh force/scripts/hetero/seen/com/grid/0_0.5.sh
 ```
+# Citation 
+
 # Contact
 Any questions, feel free to reach out to:
 
