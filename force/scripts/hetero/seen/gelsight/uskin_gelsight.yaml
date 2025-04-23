@@ -1,0 +1,34 @@
+task: uskin_gelsight
+
+src_img: dataset/homo/infer/hetero/gelsight_uskin/location/18types/final/uskin_gelsight/02_25_21_14
+src_force: /scratch_tmp/grp/luo/zhuo/genforce/dataset/genforce/heterogeneous/location_pair/uskin_gelsight/force/18indenters/uskin
+
+tar_img: /scratch_tmp/grp/luo/zhuo/genforce/dataset/genforce/heterogeneous/location_pair/uskin_gelsight/img/18indenters/gelsight
+tar_force: /scratch_tmp/grp/luo/zhuo/genforce/dataset/genforce/heterogeneous/location_pair/uskin_gelsight/force/18indenters/gelsight
+
+min_max: force/config/min_max.json
+
+checkpoint: /scratch_tmp/users/k23058530/project/genforce/output/force/hetero/3types/seen/m2m/uskin_gelsight/20250215_155858/epoch_40.pth
+save_dir: /scratch_tmp/users/k23058530/project/genforce/output/force/hetero/3types/final/{}
+
+unseen: ["sphere_s", "triangle", "pacman", "cone", "wave", "torus", "dots"]
+test_unseen: False
+
+#Train
+train: True
+train_use_checkpoint: True                 
+draw_force: True
+draw_use_checkpoint: False 
+     
+#Infer
+# train: False
+# train_use_checkpoint: True                 
+# draw_force: True
+# draw_use_checkpoint: True               
+
+num_workers: 16
+batch_size: 4
+n_epoch: 40
+early_stop: 20
+lr: 1e-3   #train 1e-1;fine tune:1e-3
+seed: 0

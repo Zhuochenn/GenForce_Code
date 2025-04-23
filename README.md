@@ -21,10 +21,53 @@ conda env create -f environment.yaml
 ```
 conda activate genforce
 ```
-## Training for maker-to-marker translation
+## 1. Training for maker-to-marker translation
 
-### Step1. Traning for marker encoder
-To training the maker-to-marker translation model, we first train a marker encoder for marker feature extraction. The marker encoder is frozon for the image condition.
+For reproducing, Step1 to Step3 are the process we trained our model for the experiments in our paper.
+
+For utilizing the model on real-world sensor, users just need to collect location paired images as the trajectries used in our paper and finetune the model with the checkpoints in Step 3.
 
 
-## Training for force prediction
+### Step1. Training for marker encoder
+- To training the maker-to-marker translation model, we first train a marker encoder for marker feature extraction. 
+```
+sh m2m/vae/marker_encoder.sh
+```
+### Step2. Pretraining with simulated data
+- We frozen marker encoder for the image condition and pretrain the m2m model with simulated data. 
+```
+sh m2m/m2m/m2m_sim.sh
+```
+### Step3. Fintuning with real-world data 
+#### homogeneous translation
+- Finetuning the m2m model with homogeneous data. 
+```
+sh m2m/m2m/infer/m2m_homo.sh
+```
+#### material softness effect
+- Finetuning the m2m model with material softness effect data. 
+```
+sh m2m/m2m/infer/m2m_modulus.sh
+```
+#### homogeneous translation
+- Finetuning the m2m model with homogeneous data. 
+```
+sh m2m/m2m/infer/m2m_heter.sh
+```
+## 2. Inference for maker-to-marker translation
+
+Upon training m2m model, we can convert all the images with force labels from the source sensors to target sensors.
+- homogeneous translation. 
+```
+sh m2m/m2m/infer/m2m_infer_homo.sh
+```
+- material softness effect. 
+```
+sh m2m/m2m/infer/m2m_infer_modulus.sh
+```
+- heterogeneous translation. 
+```
+sh m2m/m2m/infer/m2m_infer_heter.sh
+```
+## 3. Training for force prediciton models
+After inference, we get the generated images and force labels from the source sensors. We can use those data to train the force prediction model for each target sensor.

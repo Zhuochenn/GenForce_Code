@@ -1,0 +1,37 @@
+task: ratio_14-ratio_6
+
+src_img: dataset/homo/infer/modulus/ratio_6/ratio_14_ratio_6/01_18_23_02
+src_force: dataset/homo/modulus/force/ratio_14
+
+tar_img: dataset/homo/modulus/image/ratio_6
+tar_force: dataset/homo/modulus/force/ratio_6
+
+min_max: force/config/min_max.json
+
+checkpoint: /scratch_tmp/users/k23058530/project/genforce/output/force/modulus/incomplete/ratio6/ratio_14_ratio_6/20250121_165315/epoch_40.pth
+save_dir: /scratch_tmp/users/k23058530/project/genforce/output/force/modulus_correction_depth0.8/{}
+
+src_depth: dataset/homo/modulus/depth/ratio_14
+modulus: dataset/homo/modulus/modulus
+
+#Train
+train: True
+train_use_checkpoint: True                 
+draw_force: True
+draw_use_checkpoint: False 
+     
+#Infer
+# train: False
+# train_use_checkpoint: True                 
+# draw_force: True
+# draw_use_checkpoint: True                 
+
+num_workers: 32
+batch_size: 8
+n_epoch: 40
+early_stop: 20
+lr: 1e-3   #train 1e-1;fine tune:1e-3
+seed: 0
+
+unseen: ["no"]
+test_unseen: False

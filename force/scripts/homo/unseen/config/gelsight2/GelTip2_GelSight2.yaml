@@ -1,0 +1,29 @@
+task: GelTip2_GelSight2
+
+src_img: infer/homo/GelTip2_GelSight2/01_13_23_14
+src_force: dataset/homo/force/GelTip2
+
+tar_img: dataset/homo/image/npy/GelSight2
+tar_force: dataset/homo/force/GelSight2
+
+min_max: force/config/min_max.json
+
+checkpoint: infer/force/gelsight2/GelTip2_GelSight2/20250212_034505/epoch_40.pth
+save_dir: /scratch_tmp/grp/luo/zhuo/genforce/infer/force/5types/unseen/m2m/gelsight2/{}
+
+unseen: ["sphere_s", "triangle", "pacman", "cone", "wave", "torus"]
+test_unseen: True
+
+#Infer
+train: False
+train_use_checkpoint: True                 
+draw_force: True
+draw_use_checkpoint: True                      
+
+num_workers: 16
+batch_size: 2
+n_epoch: 40
+early_stop: 20
+lr: 1e-3   #train 1e-1;fine tune:1e-3
+seed: 0
+

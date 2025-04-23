@@ -1,0 +1,37 @@
+task: tactip_uskin
+
+src_img: dataset/homo/infer/hetero/3types/tactip_uskin/02_15_05_52
+src_force: /scratch_tmp/grp/luo/zhuo/genforce/dataset/genforce/heterogeneous/location_pair/uskin_gelsight/force/18indenters/tactip
+
+tar_img: /scratch_tmp/grp/luo/zhuo/genforce/dataset/genforce/heterogeneous/location_pair/uskin_gelsight/img/18indenters/uskin
+tar_force: /scratch_tmp/grp/luo/zhuo/genforce/dataset/genforce/heterogeneous/location_pair/uskin_gelsight/force/18indenters/uskin
+
+min_max: force/config/min_max.json
+
+checkpoint: /scratch_tmp/users/k23058530/project/genforce/output/force/hetero/3types/paper/tactip_uskin/ori/epoch_40.pth
+save_dir: /scratch_tmp/users/k23058530/project/genforce/output/force/selected/hetero/uskin/cylinder_si_30/{}
+
+unseen: ["sphere_s", "triangle", "pacman", "cone", "wave", "torus", "dots"]
+test_unseen: False
+# infer_point: 30
+# infer_indenter: cylinder_si
+
+
+#Train
+# train: True
+# train_use_checkpoint: True                 
+# draw_force: True
+# draw_use_checkpoint: False 
+     
+#Infer
+train: False
+train_use_checkpoint: True                 
+draw_force: True
+draw_use_checkpoint: True               
+
+num_workers: 16
+batch_size: 4
+n_epoch: 40
+early_stop: 20
+lr: 1e-3   #train 1e-1;fine tune:1e-3
+seed: 0

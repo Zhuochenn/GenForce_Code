@@ -258,7 +258,7 @@ def create_dataloader_test(img_dir, force_dir, global_min_max, shuffle=True):
 # Example Usage  
 if __name__ == "__main__":  
     # Directory paths  
-    force_dir = "/scratch_tmp/grp/luo/zhuo/genforce/dataset/genforce/gelsight/force/GelSight1_new_merged"  
+    force_dir = "dataset/homo/force/GelSight1_new_merged"  
     # img_dir = "/scratch_tmp/users/k23058530/dataset/genforce/real/gelsight/GelTip2/image"  
 
     great_one_dir = "project/genforce/src/force/config/GelSight1_new_Normal>1.csv"
