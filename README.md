@@ -2,6 +2,8 @@
 
 The code for paper "Training Tactile Sensors to Learn Force Sensing from Each Other".
 
+![image](assets/cover.jpg)
+
 # Overview
 A framework, GenForce, that enables transferable force sensing across tactile sensors. GenForce unifies tactile signals into shared marker representations, analogous to cortical sensory encoding, allowing force prediction models trained on one sensor to be transferred to others without the need for exhaustive force data collection.  More Details can be found in our paper.
 
