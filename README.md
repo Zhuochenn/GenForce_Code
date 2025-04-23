@@ -71,3 +71,18 @@ sh m2m/m2m/infer/m2m_infer_heter.sh
 ```
 ## 3. Training for force prediciton models
 After inference, we get the generated images and force labels from the source sensors. We can use those data to train the force prediction model for each target sensor.
+- homogeneous translation (run bash files in force/scripts/homo)
+For example, to tranfer to Array-I
+```
+sh force/scripts/homo/seen/m2m/Array-I/Array-I_sbatch.sh
+```
+- material softness effect. 
+For example, to tranfer to ratio6 without compensation
+```
+sh force/scripts/modulus/train/wo_com/ratio6/6.sh
+```
+- heterogeneous translation. 
+For example, to train all heterogeneous sensors with compensation, starting depth 0, correction weight 0.5
+```
+sh force/scripts/hetero/seen/com/grid/0_0.5.sh
+```
