@@ -124,7 +124,6 @@ def main(args):
         net_m2m, net_disc, optimizer, optimizer_disc, net_lpips, dl_train, lr_scheduler, lr_scheduler_disc
     )
     # renorm with image net statistics
-    # t_clip_renorm = transforms.Normalize(mean=(0.48145466, 0.4578275, 0.40821073), std=(0.26862954, 0.26130258, 0.27577711))
     weight_dtype = torch.float32
     if accelerator.mixed_precision == "fp16":
         weight_dtype = torch.float16

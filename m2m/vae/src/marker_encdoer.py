@@ -120,8 +120,7 @@ class MarkerEncoder:
             mixed_precision=self.mixed_precision,  
         )  
         
-    def setup_model(self):  
-        # Load SD-Turbo VAE  
+    def setup_model(self):   
         self.vae = AutoencoderKL.from_pretrained(  
             "stabilityai/sd-turbo",  
             subfolder="vae",
@@ -301,11 +300,11 @@ class MarkerEncoder:
 
 def main():  
     config = {  
-        "train_batch_size": 8,  # Adjusted for 256x256 resolution
+        "train_batch_size": 8,  
         "gradient_accumulation_steps": 4,  
         "learning_rate": 1e-4,  
         "max_train_steps": 100000,  
-        "output_dir": "marker_encoder",  
+        "output_dir": "checkpoints/marker_encoder",  
         "mixed_precision": "fp16",
         "lora_rank": 4,
         "checkpoint_path": None
@@ -314,7 +313,7 @@ def main():
     trainer = MarkerEncoder(**config)  
     
     trainer.train(  
-        data_dir="/scratch_tmp/users/k23058530/dataset/genforce/sim/12types",  
+        data_dir="/scratch/grp/luo/zhuo/genforce/dataset/sim/12types",  
         num_epochs=100,  
         save_steps=1000,  
         log_steps=100  

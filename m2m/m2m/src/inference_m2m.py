@@ -231,82 +231,6 @@ class InferDatasetReal(Dataset):
             'source2target_path': sample['source2target_path']
         }
 
-
-class InferDatasetHetero(Dataset):
-    def __init__(self, 
-                 dataset_root: str,
-                 source_domain: str,
-                 target_domain: str):
-        """
-        Initialize the sensor Dataset
-        Args:
-            root_dir: Root directory of the dataset
-        """
-        self.root_dir = os.path.abspath(dataset_root)
-        self.source_domain = source_domain
-        self.target_domain = target_domain
-
-        self.source_dir = os.path.abspath(os.path.join(dataset_root,self.source_domain))
-        self.transform = build_transform()
-
-        self.target_ref_image = self._get_target_ref_img()
-        self.source_imgs = self._get_source_data()
-        print(f"Initialized dataset with {len(self.source_imgs)} samples")
-    
-    def _get_target_ref_img(self):
-        """Get target reference image"""
-        target_ref_image = np.load(os.path.join(self.root_dir, f"{self.target_domain}_ref.npy"))
-        if len(target_ref_image.shape)==1: target_ref_image = np.unpackbits(target_ref_image).reshape((480,640))*255
-        target_ref_image = Image.fromarray(target_ref_image.astype(np.uint8)).convert('RGB')
-        if self.transform:
-            target_ref_image = self.transform(target_ref_image)
-        return target_ref_image
-    
-    def _get_images(self) -> List[str]:
-        """Get all image paths in a specific sensor folder"""
-        sensor_dir = self.source_dir
-        if not os.path.exists(sensor_dir):
-            return []
-        return sorted(glob.glob(os.path.join(sensor_dir, "*.npy")))
-    
-    def _get_source_data(self) -> List[Dict[str, str]]:
-        """Generate all paired data"""
-        source_data = []
-        source_images = self._get_images()
-        for source_img in source_images:
-            source_img_name = os.path.basename(source_img)
-            source_data.append({
-                "source": source_img,
-                "source2target_path": source_img_name})
-        return source_data
-    
-    def __len__(self) -> int:
-        """Return the total number of paired samples"""
-        return len(self.source_imgs)
-    
-    def __getitem__(self, idx: int) -> Dict[str, torch.Tensor]:
-        """
-        Get a data sample
-        Returns:
-            A dictionary containing:
-            - source_image: The source image
-            - target_image: The target image
-            - target_ref_image: The reference image for the target sensor
-        """
-        sample = self.source_imgs[idx]
-        # Load images
-        source_image = np.load(sample['source'])
-        if len(source_image.shape)==1: source_image = np.unpackbits(source_image).reshape((480,640))*255
-        source_image = Image.fromarray(source_image.astype(np.uint8)).convert('RGB')
-        # Apply transforms if specified
-        if self.transform:
-            source_image = self.transform(source_image)
-        return {
-            'source': source_image,
-            'target_ref': self.target_ref_image,
-            'source2target_path': sample['source2target_path']
-        }
-
 def high_quality_upscale(img, target_size):  
     # Gradual upscaling for better quality  
     current_size = img.size  
@@ -345,19 +269,17 @@ def upscale_threshold(img, target_size, dtype=None, marker_num = 80):
 if __name__ == "__main__":
 
     parser = argparse.ArgumentParser()
-    parser.add_argument('--img_root', type=str, default="/scratch_tmp/grp/luo/zhuo/genforce/dataset/genforce/gelsight/image/npy")
-    parser.add_argument('--infer_hetero', action='store_true')
+    parser.add_argument('--img_root', type=str, default="dataset/homo")
     parser.add_argument('--infer_sim', action='store_true')
     parser.add_argument('--infer_real', action='store_true')
     parser.add_argument('--sensor_types', type=str, nargs="+", default=['GelSight1', "GelTip2", "TacTip2", "GelSight2", "GelTip3"])
-    parser.add_argument('--model_path', type=str, default='/scratch_tmp/grp/luo/zhuo/genforce/checkpoints/real/wo_norm/unseen/5types/checkpoints/model_11501.pkl')
-    parser.add_argument('--output_dir', type=str, default='/scratch_tmp/grp/luo/zhuo/genforce/dataset/genforce/gelsight/infer/5types')
+    parser.add_argument('--model_path', type=str, default='checkpoints/model_11501.pkl')
+    parser.add_argument('--output_dir', type=str, default='checkpoints/homo')
     parser.add_argument('--dataloader_num_workers', type=int, default=8)
     parser.add_argument('--batch_size', type=int, default=8)
-    parser.add_argument('--marker_num_all', type=int, nargs="+", default=[90,55,55,55,90])
+    # parser.add_argument('--marker_num_all', type=int, nargs="+", default=[90,55,55,55,90])
     parser.add_argument('--save_type', type=str, default='npy')
     parser.add_argument('--target', type=str, default=None)
-    parser.add_argument('--start_end', type=str, default='0_20')
     args = parser.parse_args()
     # image root
     img_root = args.img_root
@@ -366,26 +288,22 @@ if __name__ == "__main__":
     if args.target is not None:
         sensor_pairs = [combi for combi in sensor_pair_permu if args.target in combi[1]] # fixed target domain
     else:
-        sensor_pairs = sensor_pair_permu# convert all 
-    marker_num_all = args.marker_num_all
+        sensor_pairs = sensor_pair_permu
+    # marker_num_all = args.marker_num_all
     # initialize the model
     model = Marker2Marker(args.model_path).cuda()
     model.set_eval()
     for source, target in sensor_pairs:
         source_target = source+"_"+target
-        # marker_num = marker_num_all[sensor_types.index(target)]
-        marker_num = 0
+        # marker_num = 0
         date = datetime.datetime.now().strftime("%m_%d_%H_%M")
         output_folder = os.path.join(args.output_dir,source_target, date)
         os.makedirs(output_folder, exist_ok=True)
-        if args.infer_hetero:
-            dataset_infer = InferDatasetHetero(img_root,source,target)
-        elif args.infer_sim:
+        if args.infer_sim:
             dataset_infer = SimDataset(img_root,source,target)
         elif args.infer_real:
             dataset_infer = InferDatasetReal(img_root,source,target)
         dataloader_infer = torch.utils.data.DataLoader(dataset_infer, batch_size=args.batch_size, shuffle=False, num_workers=args.dataloader_num_workers)
-        # is_bad_list
         is_bad_list = []
         with torch.no_grad():
             for step, batch in tqdm(enumerate(dataloader_infer)):
@@ -397,11 +315,11 @@ if __name__ == "__main__":
                 cur_t_pred = model.infer(cur_t,ref_t)
                 output_imgs = [Image.fromarray(cur_t_pred[idx].mul(255).clamp(0, 255).byte().permute(1, 2, 0).cpu().numpy()) for idx in range(B)]
                 for idx, output_img in enumerate(output_imgs):
-                    output_img, is_bad = upscale_threshold(output_img,(640,480),dtype=args.save_type, marker_num = marker_num)
+                    output_img, is_bad = upscale_threshold(output_img,(640,480),dtype=args.save_type, marker_num = 0)
                     out_path = os.path.join(output_folder,source2target_path[idx])
                     os.makedirs(os.path.dirname(out_path),exist_ok=True)
                     if is_bad: is_bad_list.append(out_path)
                     if args.save_type == "npy": np.save(out_path,output_img)
                     if args.save_type == "jpg": output_img.save(out_path)
-            np.savetxt(os.path.join(output_folder, "is_bad.csv"), is_bad_list, delimiter=",", fmt='%s')
+            # np.savetxt(os.path.join(output_folder, "is_bad.csv"), is_bad_list, delimiter=",", fmt='%s')
 
