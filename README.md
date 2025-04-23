@@ -11,6 +11,8 @@ The GenForce model contains two modules:
 
 * **Force prediction model** ([force](/m2m)). After training m2m model, we can transfer all of the marker images with force labels from the old sensor to new sensors, allowing to use the transferred marker images and the existing labels to train force prediciton models to target sensors.
 
+> Dataset can be downloaded from [Dataset]()
+
 # Getting Started
 ## Environment
 - Install required denpendencied using our conda env file
