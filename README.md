@@ -9,7 +9,7 @@ The GenForce model contains two modules:
 
 * **Marker-to-marker translation model** ([m2m](/m2m)). The m2m module is available to transfer the deformation across arbitrary marker representations. The first step is to train the model to bridge the source sensors and the target sensors using the m2m model.This end-to-end model enables direct translation of marker-based images from source images to generated images with the image style of target sensors while preserving the deformation from source sensors .
 
-* **Force prediction model** ([force](/m2m)). After training m2m model, we can transfer all of the marker images with force labels from the old sensor to new sensors, allowing use the transferred marker images and the existing labels to traing force prediciton models to target sensors.
+* **Force prediction model** ([force](/m2m)). After training m2m model, we can transfer all of the marker images with force labels from the old sensor to new sensors, allowing to use the transferred marker images and the existing labels to train force prediciton models to target sensors.
 
 # Getting Started
 ## Environment
@@ -25,16 +25,16 @@ conda activate genforce
 
 For reproducing, Step1 to Step3 are the process we trained our model for the experiments in our paper.
 
-For utilizing the model on real-world sensor, users just need to collect location paired images as the trajectries used in our paper and finetune the model with the checkpoints in Step 3.
+For utilizing the model on real-world sensor, users just need to collect location paired images as the trajectories used in our paper and finetune the model with the checkpoints in Step 3.
 
 
 ### Step1. Training for marker encoder
-- To training the maker-to-marker translation model, we first train a marker encoder for marker feature extraction. 
+- To train the maker-to-marker translation model, we first train a marker encoder for marker feature extraction. 
 ```
 sh m2m/vae/marker_encoder.sh
 ```
 ### Step2. Pretraining with simulated data
-- We frozen marker encoder for the image condition and pretrain the m2m model with simulated data. 
+- We freeze marker encoder for the image condition and pretrain the m2m model with simulated data. 
 ```
 sh m2m/m2m/m2m_sim.sh
 ```
