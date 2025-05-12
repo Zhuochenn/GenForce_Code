@@ -1,0 +1,43 @@
+# unit:length(mm) angle(degree)
+#gel
+elastomer:
+  particle:
+    num_l: 101
+    num_w: 101
+    num_h: 21
+  size: 
+    l: 25
+    w: 25
+    h: 4
+  modulus: 1.45E+5
+  poisson_ratio: 0.45
+
+# world
+world:
+  dt: 1.0E-4
+  coordin_offset:
+    x_offset: 20
+    y_offset: 20
+    z_offset: 10
+  display_scale: 100
+  display_shift:
+    dx: -10
+    dy: -10
+    scale: 3
+  resolution: 600
+  speed: -40
+
+# grid
+grid:
+  n_grid: 256
+  length_grid: 33
+
+# indenter
+indenter:
+  pose:
+    x: 0
+    y: 0
+    z: 33
+    R: 0
+    P: -3.14
+    Y: 0

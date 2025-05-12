@@ -36,6 +36,26 @@ conda env create -f environment.yaml
 ```
 conda activate genforce
 ```
+## 0. Simulation for marker deformation
+Tested in ubuntu 20.0
+
+- Install `pcl-tools`, `blender`
+```
+sudo apt install pcl-tools
+sudo snap install blender --channel=3.3lts/stable --classic
+```
+- Elastomer deformation 
+```
+python sim/deformation/1_stl2npy.py
+python sim/deformation/2_deformation.py
+python sim/deformation/3_npz2stl.py
+```
+- Marker rendering
+```
+blender -b --python sim/marker/4_render.py
+```
+
+
 ## 1. Training for maker-to-marker translation
 
 For reproducing, Step1 to Step3 are the process we trained our model for the experiments in our paper.

@@ -1,2 +1,9 @@
 hpc_temp/
 *_hpc.sh
+gif/
+*.npy
+*.png
+*.pcd
+*.ply
+*.npz
+!*.stl

@@ -13,6 +13,10 @@ dependencies:
       - dominate
       - tokenizers
       - tqdm
+      - taichi
+      - pytransform3d
+      - imageio
+      - open3d
       - opencv-python
       - clip @ git+https://github.com/openai/CLIP.git
       - torch>=2.0.1

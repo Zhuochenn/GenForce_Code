@@ -1,0 +1,5 @@
+# data collection path
+stepX: 4
+stepY: 4
+stepZ: 0.3
+maxZ: 1.5
