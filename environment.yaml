@@ -17,6 +17,7 @@ dependencies:
       - pytransform3d
       - imageio
       - open3d
+      - scikit-image
       - opencv-python
       - clip @ git+https://github.com/openai/CLIP.git
       - torch>=2.0.1

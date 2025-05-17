@@ -7,3 +7,5 @@ gif/
 *.ply
 *.npz
 !*.stl
+dataset/
+

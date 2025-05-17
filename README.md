@@ -23,11 +23,9 @@ The GenForce model contains two modules:
 
 * **Force prediction model** ([force](/m2m)). After training m2m model, we can transfer all of the marker images with force labels from the old sensor to new sensors, allowing to use the transferred marker images and the existing labels to train force prediciton models to target sensors.
 
-> Dataset can be downloaded from [Dataset]()
-
 # Getting Started
 ## Environment
-We test our code on NVIDIA A100, 80GB memory.
+We test our code on NVIDIA A100, 80GB memory. 
 - Install required denpendencied using our conda env file
 ```
 conda env create -f environment.yaml
@@ -36,7 +34,11 @@ conda env create -f environment.yaml
 ```
 conda activate genforce
 ```
-## 0. Simulation for marker deformation
+> To test the genforce model, our dataset can be downloaded from [Dataset](). Unzip the files in dataset/
+## 0. Data Collection
+
+### Simulation for marker deformation
+
 Tested in ubuntu 20.0
 
 - Install `pcl-tools`, `blender`
@@ -54,14 +56,22 @@ python sim/deformation/3_npz2stl.py
 ```
 blender -b --python sim/marker/4_render.py
 ```
+> Can modify your own design by the changing the marker pattern in sim/marker/marker_pattern
 
+### Real-world data collection (if want to deploy in your sensor)
+Setup needed: Robot arm (or any 3DoF moving platform), indenters, tactile sensors
+
+Step 1. Collect the data by referring to the trajectory in our paper. If want to use material compensation, force-depth curved needed to be measured.
+
+Step 2. Marker segmentation
 
 ## 1. Training for maker-to-marker translation
 
 For reproducing, Step1 to Step3 are the process we trained our model for the experiments in our paper.
 
-For utilizing the model on real-world sensor, users just need to collect location paired images as the trajectories used in our paper and finetune the model with the checkpoints in Step 3.
+For utilizing the model on other sensors, users just need to collect location paired images as the trajectories used in our paper and finetune the model with the checkpoints in Step 3.
 
+> To successfully run below code, changing the dataset_folder/ argument in each .sh file with your dataset location.
 
 ### Step1. Training for marker encoder
 - To train the maker-to-marker translation model, we first train a marker encoder for marker feature extraction. 
