@@ -24,7 +24,7 @@ class SequentialDataset(Dataset):
         """  
         self.force_dir = force_dir  
         self.img_dir = img_dir  
-        self.force_filter = np.loadtxt(force_filter_list, dtype=str)
+        self.force_filter = []
         self.global_min = np.array(global_min_max['min'])
         self.global_max = np.array(global_min_max['max'])
         self.image_size = image_size
@@ -122,8 +122,8 @@ class SequentialDataset(Dataset):
                 image = np.repeat(image[np.newaxis, :, :], 3, axis=0)  # Expand dimensions and repeat along the channel axis 
             if image.shape[2] != 3:
                 image = image.transpose(1, 2, 0) # Convert shape (C, H, W) -> (H, W, C)
-            image = Image.fromarray((image).astype(np.uint8))  ## hetero
-            # image = Image.fromarray((image*255).astype(np.uint8))  ## homo, modulus
+            # image = Image.fromarray((image).astype(np.uint8))  ## hetero
+            image = Image.fromarray((image*255).astype(np.uint8))  ## homo, modulus
             image = self.transform(image)  #  and apply transforms  
             images.append(image) 
             # print(f"{file} done") 

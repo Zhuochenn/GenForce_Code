@@ -143,7 +143,7 @@ class SequentialDataset(Dataset):
                 image = np.repeat(image[np.newaxis, :, :], 3, axis=0)  # Expand dimensions and repeat along the channel axis 
             if image.shape[2] != 3:
                 image = image.transpose(1, 2, 0) # Convert shape (C, H, W) -> (H, W, C)
-            image = Image.fromarray((image).astype(np.uint8))  ## hetero
+            image = Image.fromarray((image*255).astype(np.uint8))  ## hetero
             image = self.transform(image)  #  and apply transforms  
             images.append(image) 
             # print(f"{file} done") 

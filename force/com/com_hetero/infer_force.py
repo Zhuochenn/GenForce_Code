@@ -15,7 +15,7 @@ def visual_predict(groundtruth, prediction, fig_save_dir):
     """  
     Visualize the predictions vs ground truth on a scatter plot (Fx, Fy, Fz) with R^2.  
     """  
-    plt.style.use("/scratch_tmp/users/k23058530/project/genforce/src/force/config/fig.mplstyle")  
+    plt.style.use("force/config/fig.mplstyle")  
     force_labels = [r"$F_x$", r"$F_y$", r"$F_z$"]  
     colors = ["darkturquoise", "darkorchid", "crimson"]  
     bounds = [(-5, 5, 4), (-5, 5, 4), (-20, 5, 10)]  # (min, max, step) for ticks in each axis  
