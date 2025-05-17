@@ -319,7 +319,11 @@ if __name__ == "__main__":
                     out_path = os.path.join(output_folder,source2target_path[idx])
                     os.makedirs(os.path.dirname(out_path),exist_ok=True)
                     if is_bad: is_bad_list.append(out_path)
-                    if args.save_type == "npy": np.save(out_path,output_img)
-                    if args.save_type == "jpg": output_img.save(out_path)
+                    if args.save_type == "npy": 
+                        if "jpg" in out_path: out_path = out_path.replace("jpg","npy")
+                        np.save(out_path,output_img)
+                    if args.save_type == "jpg": 
+                        if "npy" in out_path: out_path = out_path.replace("npy","jpg")
+                        output_img.save(out_path)
             # np.savetxt(os.path.join(output_folder, "is_bad.csv"), is_bad_list, delimiter=",", fmt='%s')
 

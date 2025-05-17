@@ -25,7 +25,10 @@ The GenForce model contains two modules:
 
 # Getting Started
 ## Environment
-We test our code on NVIDIA A100, 80GB memory. 
+We test our code on NVIDIA A100, 80GB memory;
+Reduce batch_size if out of memory; 
+
+(Mininum memory > 8GB to run marker-to-marker translation model; Force prediction model can run < 8GB). 
 - Install required denpendencied using our conda env file
 ```
 conda env create -f environment.yaml
@@ -34,7 +37,13 @@ conda env create -f environment.yaml
 ```
 conda activate genforce
 ```
-> To test the genforce model, our dataset can be downloaded from [Dataset](). Unzip the files in dataset/
+> To test the genforce model, our dataset and checkpoints can be downloaded from [Dataset](). Put the dataset into dataset/, checkpoints into checkpoints/
+> All the marker images are saved with np.packbit() to reduce memory cost. To see the image use
+```
+loaded_image = np.load(img_path)
+loaded_image = np.unpackbits(loaded_image).reshape((480,640))*255
+            loaded_image = Image.fromarray(loaded_image.astype(np.uint8)).convert('RGB')
+```
 ## 0. Data Collection
 
 ### Simulation for marker deformation
