@@ -38,6 +38,7 @@ conda env create -f environment.yaml
 conda activate genforce
 ```
 > To test the genforce model, our dataset and checkpoints can be downloaded from [Dataset](). Put the dataset into dataset/, checkpoints into checkpoints/
+
 > All the marker images are saved with np.packbit() to reduce memory cost. To see the image use
 ```
 loaded_image = np.load(img_path)
