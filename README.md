@@ -43,7 +43,7 @@ conda activate genforce
 ```
 loaded_image = np.load(img_path)
 loaded_image = np.unpackbits(loaded_image).reshape((480,640))*255
-            loaded_image = Image.fromarray(loaded_image.astype(np.uint8)).convert('RGB')
+loaded_image = Image.fromarray(loaded_image.astype(np.uint8)).convert('RGB')
 ```
 ## 0. Data Collection
 
