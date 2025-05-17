@@ -41,9 +41,14 @@ conda activate genforce
 
 > All the marker images are saved with np.packbit() to reduce memory cost. To see the image use
 ```
-loaded_image = np.load(img_path)
+from PIL import Image
+import numpy as np
+
+image_path = "dataset/homo/img/npy/Array-I_ref.npy" # modify the path
+loaded_image = np.load(image_path)
 loaded_image = np.unpackbits(loaded_image).reshape((480,640))*255
 loaded_image = Image.fromarray(loaded_image.astype(np.uint8)).convert('RGB')
+loaded_image.show()
 ```
 ## 0. Data Collection
 
