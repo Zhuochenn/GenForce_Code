@@ -39,7 +39,7 @@ conda activate genforce
 ```
 > To test the genforce model, our dataset and checkpoints can be downloaded from [Dataset](). Put the dataset into dataset/, checkpoints into checkpoints/
 
-> All the marker images are saved with np.packbit() to reduce memory cost. To see the image use
+> All the marker images are saved with np.packbits() to reduce memory cost. To see the image use
 ```
 from PIL import Image
 import numpy as np
